@@ -9,3 +9,18 @@ val Shapes = Shapes(
     medium = RoundedCornerShape(4.dp),
     large = RoundedCornerShape(0.dp)
 )
+
+val ChatShape = Shapes(
+    small = RoundedCornerShape(
+        topStart = 4.dp,
+        topEnd = 4.dp,
+        bottomEnd = 0.dp,
+        bottomStart = 4.dp
+    ),
+    medium = RoundedCornerShape(
+        topStart = 0.dp,
+        topEnd = 4.dp,
+        bottomEnd = 4.dp,
+        bottomStart = 4.dp
+    )
+)

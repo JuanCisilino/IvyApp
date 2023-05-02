@@ -1,5 +1,6 @@
 package com.frost.ivyapp.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -12,14 +13,16 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.frost.ivyapp.BottomBarScreen
 import com.frost.ivyapp.BottomNavGraph
+import com.frost.ivyapp.MainViewModel
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: MainViewModel) {
     val navController = rememberNavController()
     Scaffold (
         bottomBar = { BottomBar(navController = navController)}
     ) {
-        BottomNavGraph(navController = navController)
+        BottomNavGraph(navController = navController, viewModel = viewModel)
     }
 }
 
@@ -60,8 +63,7 @@ fun RowScope.AddItem(
             )
         },
         selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } == true,
+            it.route == screen.route } == true,
         onClick = {
             navController.navigate(screen.route)
         }

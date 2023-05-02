@@ -8,13 +8,13 @@ import com.frost.ivyapp.ui.screens.TextToImage
 import com.frost.ivyapp.ui.screens.TextToText
 
 @Composable
-fun BottomNavGraph(navController: NavHostController){
+fun BottomNavGraph(navController: NavHostController, viewModel: MainViewModel){
     NavHost(
         navController = navController,
         startDestination = BottomBarScreen.Text.route
     ) {
         composable(route = BottomBarScreen.Text.route) {
-            TextToText()
+            TextToText(viewModel = viewModel)
         }
         composable(route = BottomBarScreen.Image.route) {
             TextToImage()

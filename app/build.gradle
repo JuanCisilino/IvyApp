@@ -9,9 +9,8 @@ android {
 
     defaultConfig {
         applicationId "com.frost.ivyapp"
-        minSdk 26
+        minSdk 29
         targetSdk 33
-        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -52,7 +51,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-
     implementation 'androidx.compose.material:material:1.4.2'
     implementation 'androidx.compose.ui:ui:1.4.2'
     implementation 'com.google.android.material:material:1.8.0'
