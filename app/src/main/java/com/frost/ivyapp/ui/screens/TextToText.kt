@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -19,18 +18,19 @@ import androidx.compose.ui.unit.dp
 import com.frost.ivyapp.MainViewModel
 import com.frost.ivyapp.model.Message
 
-
 @Composable
 fun TextToText(viewModel: MainViewModel) {
     var messageText by remember { mutableStateOf("") }
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxHeight()
+            .padding(0.dp, 0.dp, 0.dp,40.dp)
     ) {
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 50.dp, 0.dp,0.dp)
+                .fillMaxHeight()
+                .padding(0.dp, 40.dp, 0.dp,0.dp)
         ) {
             items(viewModel.messages) { message ->
                 MessageItem(message = message)
@@ -40,7 +40,7 @@ fun TextToText(viewModel: MainViewModel) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.Bottom
+            verticalAlignment = Alignment.Top
         ) {
             TextField(
                 value = messageText,
@@ -58,6 +58,7 @@ fun TextToText(viewModel: MainViewModel) {
                             timestamp = System.currentTimeMillis()
                         )
                     )
+                    viewModel.generateText(messageText)
                     messageText = ""
                 },
                 modifier = Modifier.padding(start = 8.dp)
@@ -73,21 +74,6 @@ fun MessageItem(message: Message) {
     Row(
         modifier = Modifier.padding(16.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .size(50.dp)
-                .background(Color.Gray, CircleShape),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = message.sender.first().toString(),
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
-
-        Spacer(modifier = Modifier.width(16.dp))
-
         Column {
             Text(
                 text = message.sender,
@@ -101,9 +87,9 @@ fun MessageItem(message: Message) {
                 modifier = Modifier
                     .background(
                         color = if (message.sender == "Me") {
-                            Color(0xffFFFFFF)
-                        } else {
                             Color(0xffDCF8C6)
+                        } else {
+                            Color(0xFFF8D0D0)
                         },
                         shape = RoundedCornerShape(8.dp)
                     )
